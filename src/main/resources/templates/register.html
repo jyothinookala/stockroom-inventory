@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account | StockRoom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="auth-page">
+<main class="auth-layout"><section class="auth-intro"><div class="brand auth-brand"><span class="brand-mark">S</span><span>Stock<strong>Room</strong></span></div><div class="intro-copy"></div></section><section class="auth-panel"><div class="auth-card"><p class="eyebrow">StockRoom</p><h2>Create account</h2><p class="auth-help">Set up a simple place for your products.</p><form id="register-form" class="auth-form"><label>Your name<input name="name" required autocomplete="name" placeholder="e.g. Ananya Sharma"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Password<input name="password" type="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters"></label><p class="form-error" id="form-error"></p><button class="primary-button auth-submit" type="submit">Create account <span>→</span></button></form><p class="auth-switch">Already have an account? <a href="/login">Sign in</a></p></div></section></main><script src="/auth.js"></script>
+</body>
+</html>

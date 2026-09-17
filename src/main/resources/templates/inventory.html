@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockRoom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">S</span><span>Stock<strong>Room</strong></span></div>
+        <div class="workspace-label">Workspace</div>
+        <nav>
+            <a class="nav-link active" href="#inventory"><span class="nav-icon">▦</span>Inventory <span class="nav-count" id="nav-count">0</span></a>
+            <a class="nav-link" href="#activity"><span class="nav-icon">↗</span>Activity</a>
+            <a class="nav-link" href="#suppliers"><span class="nav-icon">⌁</span>Suppliers</a>
+        </nav>
+        <div class="sidebar-bottom">
+            <div class="plan-card"><span class="eyebrow">Workspace plan</span><strong>Growth</strong><div class="plan-progress"><span></span></div><small>62% of 1,000 items used</small></div>
+            <a class="nav-link" href="#settings"><span class="nav-icon">⚙</span>Settings</a>
+            <div class="user-row"><span class="avatar" id="user-initials">YU</span><span><strong id="user-name">Your workspace</strong><small>Administrator</small></span><button class="logout-button" id="logout-button">Log out</button></div>
+        </div>
+    </aside>
+
+    <main class="main-content" id="inventory">
+        <header class="topbar"><div class="brand compact-brand"><span class="brand-mark">S</span><span>Stock<strong>Room</strong></span></div><div class="breadcrumbs"><strong>Dashboard</strong></div><div class="top-actions"><span class="sync-status"><i></i>Saved</span><button class="avatar avatar-small" id="top-user">YU</button></div></header>
+        <section class="page-heading"><div><p class="eyebrow">Dashboard</p><h1>Inventory</h1></div></section>
+
+        <section class="metric-grid simple-stats" aria-label="Inventory summary">
+            <article class="metric-card accent-coral"><div class="metric-label">Products</div><strong id="total-items">—</strong></article>
+            <article class="metric-card accent-teal"><div class="metric-label">Units</div><strong id="units-on-hand">—</strong></article>
+            <article class="metric-card accent-amber"><div class="metric-label">Orders</div><strong id="low-stock">—</strong></article>
+        </section>
+
+        <section class="simple-workspace">
+            <div class="add-product-card"><h2>Add product</h2><form id="quick-item-form"><label>Name<input name="name" required placeholder="Enter name"></label><label>Quantity<input name="quantity" required type="number" min="0" placeholder="Enter quantity"></label><label>Category<input name="category" required placeholder="Enter category"></label><label>SKU<input name="sku" required placeholder="Enter SKU"></label><label>Supplier<input name="supplier" required placeholder="Enter supplier"></label><label>Reorder level<input name="reorderLevel" required type="number" min="0" value="10"></label><label>Price (₹)<input name="unitPrice" required type="number" min="0" step="0.01" placeholder="Enter price"></label><button class="primary-button" type="submit">Add product</button></form></div>
+            <div class="content-panel simple-products"><div class="panel-heading"><div><h2>Products</h2></div><button class="secondary-button" id="export-button">Export</button></div><div class="toolbar"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Search products..." aria-label="Search inventory"></label><div class="toolbar-actions"><select id="category-filter" aria-label="Filter by category"><option value="">All categories</option></select><select id="status-filter" aria-label="Filter by status"><option value="">All status</option><option value="In stock">In stock</option><option value="Low stock">Low stock</option><option value="Out of stock">Out of stock</option></select></div></div><div class="table-wrap"><table><thead><tr><th>#</th><th>Product</th><th>Category</th><th>Quantity</th><th>Price</th><th>Activity</th></tr></thead><tbody id="inventory-body"><tr><td colspan="6" class="loading">Loading products...</td></tr></tbody></table></div><div class="table-footer"><span id="result-count">Showing —</span></div></div>
+        </section>
+        <section class="statistics-section"><div class="statistics-card"><h2>Product quantities</h2><p>Stock available for each product.</p><div id="quantity-chart" class="quantity-chart"></div></div><div class="statistics-card category-card"><h2>Categories</h2><p>Products grouped by category.</p><div id="category-stats" class="category-stats"></div></div></section>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop" hidden><section class="modal"><form id="item-form"></form></section></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="/app.js"></script>
+</body>
+</html>
