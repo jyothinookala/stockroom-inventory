@@ -86,3 +86,16 @@ data/              Local database files created at runtime
 ```
 
 The local `data/` and Maven `target/` folders are excluded from Git using `.gitignore`.
+## Screenshots
+
+### Login
+
+![StockRoom login page](screenshots/login.png)
+
+### Dashboard
+
+![StockRoom dashboard](screenshots/dashboard.png)
+
+### Products and statistics
+
+![StockRoom products](screenshots/products.png)
