@@ -65,8 +65,19 @@ Use this JDBC URL in the console:
 ```text
 jdbc:h2:file:./data/inventory-db
 ```
+## Screenshots
 
+### Login
 
+![StockRoom login page](screenshots/login.png)
+
+### Dashboard
+
+![StockRoom dashboard](screenshots/dashboard.png)
+
+### Products and statistics
+
+![StockRoom products and statistics](screenshots/products.png)
 
 ## Main Routes
 
