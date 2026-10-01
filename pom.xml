@@ -7,8 +7,8 @@
         <version>3.4.5</version>
         <relativePath/>
     </parent>
-    <groupId>org.yourcompany.yourproject</groupId>
-    <artifactId>inventory-studio</artifactId>
+<groupId>com.jyothi</groupId>
+<artifactId>stockroom-inventory</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
