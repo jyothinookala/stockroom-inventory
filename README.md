@@ -1,101 +1,99 @@
 # StockRoom
 
-StockRoom is a simple inventory management website built with Java Spring Boot and SQL. It helps users add products, view stock quantities, check product statistics, and manage inventory in Indian rupees.
+StockRoom is a simple inventory management web application built with Java, Spring Boot and SQL. It lets users manage products, track stock levels and view inventory statistics, with prices shown in Indian rupees (INR).
 
 ## Features
 
-- User registration and login
-- Forgot-password flow
-- Add products with name, SKU, category, supplier, quantity, reorder level, and price
-- Search and filter products
-- Update stock quantities
+- User registration and login (passwords stored as BCrypt hashes)
+- Password reset page (demo version, see Known Limitations)
+- Add products with name, SKU, category, supplier, quantity, reorder level and price
+- Search products by name or SKU
+- Increase or decrease stock quantities
 - Delete products
-- Product quantity and category statistics
+- Inventory statistics: total items, units on hand, low-stock count and inventory value
 - INR currency display
-- CSV inventory export
-- H2 SQL database with separate SQL files
+- H2 SQL database with separate `schema.sql` and `data.sql` files
 
 ## Technology
 
-- Java 17+
+- Java 17
 - Spring Boot 3.4
 - Spring MVC and Thymeleaf
 - Spring Data JPA
-- H2 SQL database
-- HTML, CSS, and JavaScript
+- H2 database (file-based)
+- HTML, CSS and JavaScript
 - Maven
 
 ## Run Locally
 
-Make sure Java and Maven are installed, then run:
+Requirements: Java 17 or later and Maven.
 
-```powershell
+```
 mvn spring-boot:run
 ```
 
-Or run the packaged application:
+Or build and run the jar:
 
-```powershell
+```
 mvn package
-java -jar target/inventory-studio-1.0-SNAPSHOT.jar
+java -jar target/stockroom-inventory-1.0-SNAPSHOT.jar
 ```
 
-Open the application at:
-
-```text
-http://localhost:8080
-```
+Open http://localhost:8080 and register a new account to get started.
 
 ## Database
 
-The application uses a file-based H2 database at `data/inventory-db`.
+The application uses a file-based H2 database stored at `data/inventory-db`.
 
-- `src/main/resources/schema.sql` creates the database tables.
-- `src/main/resources/data.sql` adds sample inventory records.
-- `src/main/resources/application.properties` contains the database configuration.
+- `src/main/resources/schema.sql` creates the tables
+- `src/main/resources/data.sql` adds sample inventory records
+- `src/main/resources/application.properties` holds the configuration
 
-The H2 console is available at:
-
-```text
-http://localhost:8080/h2-console
-```
-
-Use this JDBC URL in the console:
-
-```text
-jdbc:h2:file:./data/inventory-db
-```
 ## Screenshots
 
 ### Login
-
 ![StockRoom login page](screenshots/login.png)
 
 ### Dashboard
-
 ![StockRoom dashboard](screenshots/dashboard.png)
 
 ### Products and statistics
-
 ![StockRoom products and statistics](screenshots/products.png)
 
-## Main Routes
+## API Endpoints
 
-| Route | Purpose |
-| --- | --- |
-| `/login` | Sign in |
-| `/register` | Create an account |
-| `/forgot-password` | Reset a password |
-| `/inventory` | Inventory dashboard |
-| `/api/inventory` | Inventory REST API |
-| `/api/auth` | Authentication REST API |
+| Method | Route | Purpose |
+| ------ | ----- | ------- |
+| POST | `/api/auth/register` | Create an account |
+| POST | `/api/auth/login` | Sign in |
+| POST | `/api/auth/logout` | Sign out |
+| POST | `/api/auth/forgot-password` | Reset a password |
+| GET | `/api/auth/me` | Get the signed-in user |
+| GET | `/api/inventory` | List products (optional `?search=`) |
+| GET | `/api/inventory/summary` | Inventory statistics |
+| POST | `/api/inventory` | Add a product |
+| PATCH | `/api/inventory/{id}/adjust` | Change stock quantity |
+| DELETE | `/api/inventory/{id}` | Delete a product |
+
+Web pages: `/login`, `/register`, `/forgot-password`, `/inventory`.
 
 ## Project Structure
 
-```text
-src/main/java/     Spring Boot application and API controllers
-src/main/resources/ SQL scripts, templates, CSS, and JavaScript
-data/              Local database files created at runtime
+```
+src/main/java/        Controllers, entities and repositories
+src/main/resources/   SQL scripts, Thymeleaf templates, CSS and JavaScript
+data/                 Local database files created at runtime
 ```
 
-The local `data/` and Maven `target/` folders are excluded from Git using `.gitignore`.
+The `data/` and `target/` folders are excluded from Git using `.gitignore`.
+
+## Known Limitations
+
+This is a learning project. Possible improvements:
+
+- Add a service layer and input validation
+- Protect the inventory API with authentication checks
+- Replace the password reset with an email-based reset link
+- Use `BigDecimal` for prices
+- Switch from H2 to MySQL or PostgreSQL
+- Add unit tests
