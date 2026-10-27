@@ -12,7 +12,6 @@ StockRoom is a simple inventory management website built with Java Spring Boot a
 - Delete products
 - Product quantity and category statistics
 - INR currency display
-- CSV inventory export
 - H2 SQL database with separate SQL files
 
 ## Technology
